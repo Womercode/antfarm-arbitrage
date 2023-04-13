@@ -8,27 +8,29 @@ import { ethers } from 'hardhat';
 import log from './log';
 
 export enum Network {
-  SEPOLIA = 'Sepolia',
+  eth = 'eth',
 }
 
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 
-const SepoliaQuoteTokens: Tokens = {
-  eth: { symbol: 'ETH', address: '0x79dF3C5C1EAD89497F4871FB3b9109A80aBB17B6' },
+const ethQuoteTokens: Tokens = {
+  weth: { symbol: 'WETH', address: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2' },
 };
 
-const SepoliaBaseTokens: Tokens = {
-  atf: { symbol: 'ATF', address: '0x518b63Da813D46556FEa041A88b52e3CAa8C16a8' }
+const ethBaseTokens: Tokens = {
+  atf: { symbol: 'ATF', address: '0x518b63Da813D46556FEa041A88b52e3CAa8C16a8' },
+  agt: { symbol: 'AGT', address: '0x0BF43350076F95e0d16120b4D6bdfA1C9D50BDBD'}
 };
 
-const SepoliaDexes: AmmFactories = {
+const ethDexes: AmmFactories = {
+  uniswap: '0x1F98431c8aD98523631AE4a59f267346ea31F984',
   antfarm: '0xe48aee124f9933661d4dd3eb265fa9e153e32cbe'
 };
 
 function getFactories(network: Network): AmmFactories {
   switch (network) {
-    case Network.SEPOLIA:
-      return SepoliaDexes;
+    case Network.eth:
+      return ethDexes;
     default:
       throw new Error(`Unsupported network:${network}`);
   }
@@ -36,8 +38,8 @@ function getFactories(network: Network): AmmFactories {
 
 export function getTokens(network: Network): [Tokens, Tokens] {
   switch (network) {
-    case Network.SEPOLIA:
-      return [SepoliaBaseTokens, SepoliaQuoteTokens];
+    case Network.eth:
+      return [ethBaseTokens, ethQuoteTokens];
     default:
       throw new Error(`Unsupported network:${network}`);
   }

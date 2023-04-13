@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "prettier": "prettier --write 'contracts/**/*.sol'",
-    "bot": "hardhat run --network Sepolia bot/index.ts"
+    "bot": "hardhat run --network eth bot/index.ts",
+    "deploy": "hardhat run --network eth scripts/deploy.ts"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13",
